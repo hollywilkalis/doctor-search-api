@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="build/css/vendor.css" rel="stylesheet" type="text/css">
+    <script src="build/js/vendor.min.js"></script>
+    <script type="text/javascript" src="build/js/app.js"></script>
+    <title>Find a Portland Doctor</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Portland Doctor Search</h1>
+      </div>
+      <div class="searchboxes">
+        <div class="row">
+          <div class="col">
+            <form id="searchByName">
+              <h4>Search by doctor's name</h4>
+              <input type="text" id="doctorName">
+              <button type="submit" id="nameSubmit">Search</button>
+            </form>
+          </div>
+          <div class="col">
+            <form id="searchByKeyword">
+              <h4>Search by medical issue</h4>
+              <input type="text" id="keyword">
+              <button type="submit" id="keywordSubmit">Search</button>
+            </form>
+          </div>
+        </div><!--row-->
+      </div>
+      <div id="doctorSearchResponse"></div>
+      <div id="keywordSearchResponse"></div>
+
+      <p class="search-again">Not finding what you need? <a href="index.html">Try another search</a></p>
+
+    </div><!--container-->
+  </body>
+</html>
