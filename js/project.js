@@ -39,5 +39,8 @@ export function apiCallKeyword(inputKeyword, apiKey, addKeywordToPage) {
   promise.then(function(response) {
     let keywordInfo = JSON.parse(response);
     addKeywordToPage(keywordInfo);
+    setTimeout(function() {
+      $(".search-again").show();
+    }, 4000);
   });
 }
