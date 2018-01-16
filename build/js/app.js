@@ -65,7 +65,11 @@ function addDoctorToPage(doctorInfo) {
     $('#doctorSearchResponse').append('<p>Sorry, no doctors met your search criteria. Please try your search again.</p>');
   } else {
     for (var i = 0; i < doctorInfo.data.length; i++) {
-      $('#doctorSearchResponse').append('\n        <p>Name: ' + doctorInfo.data[i].profile.first_name + '  ' + doctorInfo.data[i].profile.last_name + '<br>\n        ' + doctorInfo.data[i].profile.image_url + '>Website<br>Accepts new patients: ' + doctorInfo.data[i].practices[0].accepts_new_patients + '<br>Address: ' + doctorInfo.data[i].practices[0].visit_address.street + '<br>' + doctorInfo.data[i].practices[0].visit_address.city + ' ' + doctorInfo.data[i].practices[0].visit_address.state + doctorInfo.data[i].practices[0].visit_address.zip + '<br>\n        Phone: ' + doctorInfo.data[i].practices[0].phones[0].number + '</p>');
+      // $('#doctorSearchResponse').append(`
+      //   <p>Name: ${doctorInfo.data[i].profile.first_name}  ${doctorInfo.data[i].profile.last_name}<br>
+      //   ${doctorInfo.data[i].profile.image_url}>Website<br>Accepts new patients: ${doctorInfo.data[i].practices[0].accepts_new_patients}<br>Address: ${doctorInfo.data[i].practices[0].visit_address.street}<br>${doctorInfo.data[i].practices[0].visit_address.city} ${doctorInfo.data[i].practices[0].visit_address.state}${doctorInfo.data[i].practices[0].visit_address.zip}<br>
+      //   Phone: ${doctorInfo.data[i].practices[0].phones[0].number}</p>`);
+      $('#doctorSearchResponse').append('<div class="card">\n        <div class="card-body">\n          <h5 class="card-title">' + doctorInfo.data[i].profile.first_name + '  ' + doctorInfo.data[i].profile.last_name + '</h5>\n          <p class="card-text">Accepts new patients: ' + doctorInfo.data[i].practices[0].accepts_new_patients + '<br>Address: ' + doctorInfo.data[i].practices[0].visit_address.street + '<br>' + doctorInfo.data[i].practices[0].visit_address.city + ' ' + doctorInfo.data[i].practices[0].visit_address.state + ' ' + doctorInfo.data[i].practices[0].visit_address.zip + '<br>\n          Phone: ' + doctorInfo.data[i].practices[0].phones[0].number + '</p></p>\n          <a href="' + doctorInfo.data[i].profile.image_url + '" class="btn btn-primary">Website</a>\n        </div>\n      </div>');
       $('#doctorSearchResponse').show();
     }
   }
@@ -84,6 +88,7 @@ function addKeywordToPage(keywordInfo) {
 
 $(document).ready(function () {
   $(".search-again").hide();
+
   $("form#searchByName").submit(function (event) {
     event.preventDefault();
     var inputName = $("#doctorName").val();
@@ -93,17 +98,14 @@ $(document).ready(function () {
       $(".search-again").show();
     }, 4000);
   });
-});
 
-$(document).ready(function () {
-  $(".searchagain").hide();
   $("form#searchByKeyword").submit(function (event) {
     event.preventDefault();
     var inputKeyword = $("#keyword").val();
     (0, _project.apiCallKeyword)(inputKeyword, apiKey, addKeywordToPage);
     $(".searchboxes").hide();
     setTimeout(function () {
-      $(".searchagain").show();
+      $(".search-again").show();
     }, 4000);
   });
 });
